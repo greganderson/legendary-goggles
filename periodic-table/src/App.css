@@ -1,0 +1,172 @@
+.app {
+  min-height: 100vh;
+  background: #0a0a0f;
+  color: #e8e8ec;
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  padding: 20px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+header h1 {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 400;
+  margin: 0 0 24px 0;
+  letter-spacing: 2px;
+}
+
+.periodic-table {
+  display: grid;
+  grid-template-columns: repeat(18, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  gap: 2px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.element {
+  aspect-ratio: 1;
+  min-width: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 150ms ease-out, box-shadow 150ms ease-out;
+  position: relative;
+  grid-row: var(--row);
+  grid-column: var(--col);
+}
+
+.element::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--color);
+  opacity: 0.15;
+  border-radius: 3px;
+}
+
+.element:hover {
+  transform: scale(1.15);
+  z-index: 10;
+  box-shadow: 0 0 20px var(--color);
+}
+
+.element.selected {
+  outline: 2px solid var(--color);
+  outline-offset: 2px;
+  z-index: 11;
+}
+
+.element .atomic-number {
+  font-size: 9px;
+  color: #8888a0;
+  position: absolute;
+  top: 2px;
+  left: 4px;
+}
+
+.element .symbol {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color);
+}
+
+.element .name {
+  font-size: 7px;
+  color: #8888a0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 2px;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal {
+  background: #16161e;
+  border: 1px solid #2a2a3a;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 360px;
+  width: 90%;
+  position: relative;
+}
+
+.modal .close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #8888a0;
+  font-size: 24px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px;
+}
+
+.modal .close:hover {
+  color: #e8e8ec;
+}
+
+.modal-header {
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #2a2a3a;
+  margin-bottom: 16px;
+}
+
+.modal-number {
+  display: block;
+  font-size: 14px;
+  color: #8888a0;
+}
+
+.modal-symbol {
+  display: block;
+  font-size: 56px;
+  font-weight: 700;
+  color: var(--color);
+  margin: 8px 0;
+}
+
+.modal-name {
+  display: block;
+  font-size: 18px;
+}
+
+.modal-body .detail {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #2a2a3a;
+}
+
+.modal-body .detail:last-child {
+  border-bottom: none;
+}
+
+.modal-body .label {
+  color: #8888a0;
+  font-size: 13px;
+}
+
+.modal-body .value {
+  color: #e8e8ec;
+  font-size: 13px;
+}
